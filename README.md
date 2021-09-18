@@ -1,6 +1,6 @@
 # diablo-mule-manager
 
-Desktop app for managing mule inventories for Diablo 2: LoD. The app is crude and more of a proof of concept than anythign else but it can still be used.
+Desktop app for managing mule inventories for Diablo 2: LoD. The app is crude and more of a proof of concept than anything else but it can still be used.
 
 # Guide
 
