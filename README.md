@@ -4,7 +4,7 @@ Desktop app for managing mule inventories for Diablo 2: LoD. The app is crude an
 
 # Guide
 
-Requires JDK 11 and up. There's a "start.bat" and compiled JAR in folder "shade".
+Requires JDK 11 and up (https://adoptopenjdk.net/). There's a "start.bat" and compiled JAR in folder "shade".
 
 There are two tabs - "View" and "Add/Edit"
 
