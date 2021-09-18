@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.AnchorPane?>
+<Tab text="View" style="-fx-font: 16px 'Calibri'" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+     fx:controller="org.diablo.manager.controllers.ViewController">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+                <SplitPane dividerPositions="0.5" layoutX="5.0" layoutY="45.0" prefHeight="522.0" prefWidth="940.0">
+                    <items>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                            <content>
+                                <TreeView fx:id="viewMuleTree" prefHeight="520.0" prefWidth="465.0" />
+                            </content>
+                        </ScrollPane>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                            <content>
+                                <ListView fx:id="viewItemList" prefHeight="520.0" prefWidth="465.0" />
+                            </content>
+                        </ScrollPane>
+                    </items>
+                </SplitPane>
+                <Label layoutX="220.0" layoutY="15.0" text="Mules">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="504.0" layoutY="15.0" text="Name">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="809.0" layoutY="15.0" text="Quantity">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </content>
+</Tab>

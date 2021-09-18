@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<Tab text="Add/Edit" style="-fx-font: 16px 'Calibri'" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+     fx:controller="org.diablo.manager.controllers.AddEditController">
+    <content>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <ChoiceBox fx:id="muleChoices" layoutX="27.0" layoutY="14.0" prefHeight="32.0" prefWidth="206.0" />
+                <Label layoutX="29.0" layoutY="75.0" text="Name:">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="editMuleName" layoutX="88.0" layoutY="69.0">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </TextField>
+                <Label layoutX="341.0" layoutY="75.0" text="Items:">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Label>
+                <ScrollPane layoutX="396.0" layoutY="69.0" prefHeight="501.0" prefWidth="552.0">
+                    <content>
+                        <ListView fx:id="editMuleItems" prefHeight="499.0" prefWidth="550.0" />
+                    </content>
+                </ScrollPane>
+                <Button onAction="#onAddItem" layoutX="329.0" layoutY="130.0" mnemonicParsing="false" text="Add">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Button>
+                <Button onAction="#onRemoveItem" layoutX="299.0" layoutY="176.0" mnemonicParsing="false" text="Remove">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Button>
+                <Button onAction="#onSaveMule" layoutX="323.0" layoutY="223.0" mnemonicParsing="false" text="Save">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button onAction="#onDeleteMule" layoutX="89.0" layoutY="115.0" mnemonicParsing="false" text="Delete mule">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </content>
+</Tab>
