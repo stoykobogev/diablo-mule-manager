@@ -41,6 +41,7 @@
         <tabs>
             <fx:include source="view-tab.fxml"/>
             <fx:include source="edit-tab.fxml"/>
+            <fx:include source="item-tab.fxml"/>
         </tabs>
       </TabPane>
   </children>

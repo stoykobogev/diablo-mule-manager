@@ -1,14 +1,17 @@
 package org.diablo.manager.services;
 
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.diablo.manager.entities.Item;
+
+import java.util.List;
 
 public class ViewService {
 
@@ -34,9 +37,22 @@ public class ViewService {
             String itemName, String itemDescription, String itemNote) {
 
         GridPane pane = generateGridPane();
+        List<String> saveditemNames = DataService.getItemNames();
+        ChoiceBox<String> itemNamesChoiceBox =
+                new ChoiceBox<>(FXCollections.observableArrayList(saveditemNames));
+        itemNamesChoiceBox.setPrefWidth(250);
+
+        if (itemName != null) {
+            for (String savedItemName : saveditemNames) {
+                if (savedItemName.equals(itemName)) {
+                    itemNamesChoiceBox.getSelectionModel().select(savedItemName);
+                    break;
+                }
+            }
+        }
 
         pane.add(generateLabel("Name:"), 0, 0);
-        pane.add(generateItemTextField(itemName), 1, 0);
+        pane.add(itemNamesChoiceBox, 1, 0);
         pane.add(generateLabel("Description:"), 0, 1);
         pane.add(generateItemTextField(itemDescription), 1, 1);
         pane.add(generateLabel("Note:"), 0, 2);

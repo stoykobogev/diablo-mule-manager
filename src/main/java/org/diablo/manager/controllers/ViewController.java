@@ -26,7 +26,7 @@ public class ViewController {
     public void initialize() {
         initializeMules(DataService.getMules());
 
-        DataService.subscribe(this::initializeMules);
+        DataService.subscribeToMules(this::initializeMules);
     }
 
     private void initializeMules(List<Mule> mules) {

@@ -39,7 +39,7 @@ public class AddEditController {
         savedMules = DataService.getMules();
         initiateMules();
 
-        DataService.subscribe((mules) -> {
+        DataService.subscribeToMules((mules) -> {
             muleChoices.getItems().clear();
             editMuleItems.getItems().clear();
             nameMuleMap.clear();
@@ -47,6 +47,15 @@ public class AddEditController {
             editMuleName.setText(null);
 
             initiateMules();
+        });
+
+        DataService.subscribeToItems((itemNames) -> {
+            if (selectedMule != null) {
+                editMuleItems.getItems().clear();
+                for (Item item : selectedMule.getItems()) {
+                    editMuleItems.getItems().add(ViewService.generateItemPane(item));
+                }
+            }
         });
 
         muleChoices.setOnAction(actionEvent -> {
@@ -91,7 +100,7 @@ public class AddEditController {
         List<Item> items = new ArrayList<>();
         for (GridPane pane : editMuleItems.getItems()) {
             ObservableList<Node> children = pane.getChildren();
-            String name = ((TextField) children.get(1)).getText();
+            String name = ((ChoiceBox<String>) children.get(1)).getSelectionModel().getSelectedItem();
             String description = ((TextField) children.get(3)).getText();
             String note = ((TextField) children.get(5)).getText();
 

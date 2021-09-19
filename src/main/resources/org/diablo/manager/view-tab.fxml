@@ -4,6 +4,7 @@
 
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <Tab text="View" style="-fx-font: 16px 'Calibri'" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
      fx:controller="org.diablo.manager.controllers.ViewController">
     <content>

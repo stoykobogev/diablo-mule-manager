@@ -14,16 +14,24 @@ import java.util.function.Consumer;
 public class DataService {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private static final File DATA_FILE;
+    private static final File MULES_FILE;
+    private static final File ITEM_NAMES_FILE;
     private static final AtomicReference<List<Mule>> MULES = new AtomicReference<>(new ArrayList<>());
-    private static final List<Consumer<List<Mule>>> SUBSCRIBERS = new ArrayList<>();
+    private static final AtomicReference<List<String>> ITEM_NAMES = new AtomicReference<>(new ArrayList<>());
+    private static final List<Consumer<List<Mule>>> MULE_SUBSCRIBERS = new ArrayList<>();
+    private static final List<Consumer<List<String>>> ITEM_SUBSCRIBERS = new ArrayList<>();
 
     static {
-        DATA_FILE = new File("./data.json");
+        MULES_FILE = new File("./mules.json");
+        ITEM_NAMES_FILE = new File("./item-names.json");
 
         try {
-            if (!DATA_FILE.createNewFile()) {
-                MULES.set(readMules());
+            if (!MULES_FILE.createNewFile()) {
+                MULES.set(readFile(MULES_FILE, Mule.class));
+            }
+
+            if (!ITEM_NAMES_FILE.createNewFile()) {
+                ITEM_NAMES.set(readFile(ITEM_NAMES_FILE, String.class));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,27 +43,47 @@ public class DataService {
         return MULES.get();
     }
 
-    public static void subscribe(Consumer<List<Mule>> consumer) {
-        SUBSCRIBERS.add(consumer);
+    public static List<String> getItemNames() {
+        return ITEM_NAMES.get();
+    }
+
+    public static void subscribeToMules(Consumer<List<Mule>> consumer) {
+        MULE_SUBSCRIBERS.add(consumer);
+    }
+
+    public static void subscribeToItems(Consumer<List<String>> consumer) {
+        ITEM_SUBSCRIBERS.add(consumer);
     }
 
     public static void saveMules(List<Mule> mules) {
         try {
-            OBJECT_MAPPER.writeValue(DATA_FILE, mules);
+            OBJECT_MAPPER.writeValue(MULES_FILE, mules);
             MULES.set(mules);
 
-            SUBSCRIBERS.forEach(c -> c.accept(MULES.get()));
+            MULE_SUBSCRIBERS.forEach(c -> c.accept(MULES.get()));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
 
-    private static List<Mule> readMules() {
-        if (DATA_FILE.length() > 0) {
+    public static void saveItemNames(List<String> itemNames) {
+        try {
+            OBJECT_MAPPER.writeValue(ITEM_NAMES_FILE, itemNames);
+            ITEM_NAMES.set(itemNames);
+
+            ITEM_SUBSCRIBERS.forEach(c -> c.accept(ITEM_NAMES.get()));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    private static <T> List<T> readFile(File file, Class<T> clazz) {
+        if (file.length() > 0) {
             try {
-                return OBJECT_MAPPER.readValue(DATA_FILE,
-                        TypeFactory.defaultInstance().constructCollectionType(List.class, Mule.class));
+                return OBJECT_MAPPER.readValue(file,
+                        TypeFactory.defaultInstance().constructCollectionType(List.class, clazz));
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(1);

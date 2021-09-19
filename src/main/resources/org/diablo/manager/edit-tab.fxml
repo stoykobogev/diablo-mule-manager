@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<Tab text="Add/Edit" style="-fx-font: 16px 'Calibri'" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+<Tab text="Mules" style="-fx-font: 16px 'Calibri'" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
      fx:controller="org.diablo.manager.controllers.AddEditController">
     <content>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">

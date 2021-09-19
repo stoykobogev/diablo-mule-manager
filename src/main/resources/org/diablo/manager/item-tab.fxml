@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<Tab text="Items" style="-fx-font: 16px 'Calibri'" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+     fx:controller="org.diablo.manager.controllers.ItemController">
+    <content>
+        <AnchorPane prefHeight="503.0" prefWidth="766.0">
+            <children>
+                <Label layoutX="61.0" layoutY="46.0" text="Name:">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="itemName" layoutX="122.0" layoutY="40.0">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </TextField>
+                <Button onAction="#onAddItem" layoutX="122.0" layoutY="88.0" mnemonicParsing="false" text="Add">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Button>
+                <ScrollPane layoutX="397.0" layoutY="35.0" prefHeight="477.0" prefWidth="388.0">
+                    <content>
+                        <ListView fx:id="itemList" prefHeight="474.0" prefWidth="385.0" />
+                    </content>
+                </ScrollPane>
+                <Button onAction="#onRemoveItem" layoutX="295.0" layoutY="243.0" mnemonicParsing="false" text="Remove">
+                    <font>
+                        <Font name="Calibri" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </content>
+</Tab>
